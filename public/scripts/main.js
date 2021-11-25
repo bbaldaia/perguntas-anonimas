@@ -15,17 +15,16 @@ checkButtons.forEach(button => {
 })
 
 deleteButton.forEach(button => {
-    button.addEventListener("click", (event) => handleClick(event, false))
+    button.addEventListener("click", (event) => handleClick(event, false, button.dataset.id))
 })
 
-function handleClick(event, check = true) { 
+function handleClick(event, check = true, questionId) { 
     event.preventDefault()
     
     const text = check ? "Marcar como lida" : "Excluir"
     const slug = check ? "check" : "delete"
     const roomId = document.querySelector("#room-id").dataset.id
-    const questionId = event.target.dataset.id
-    
+        
     const form = document.querySelector(".modal form")
     form.setAttribute("action", `/question/${roomId}/${questionId}/${slug}`)
 
